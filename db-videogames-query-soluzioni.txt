@@ -247,4 +247,14 @@ ORDER BY total_reviews DESC
 
 12- Selezionare la software house che ha vinto più premi tra il 2015 e il 2016 (software house id : 1)
 
+SELECT TOP 1 software_houses.id, COUNT(awards.id) AS total_awards
+FROM software_houses
+JOIN videogames ON software_houses.id = videogames.software_house_id
+JOIN award_videogame ON videogames.id = award_videogame.videogame_id
+JOIN awards ON award_videogame.award_id = awards.id
+WHERE award_videogame.year BETWEEN 2015 AND 2016
+GROUP BY software_houses.id
+ORDER BY total_awards DESC
+
+
 13- Selezionare le categorie dei videogame i quali hanno una media recensioni inferiore a 2 (10)
